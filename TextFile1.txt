@@ -1,0 +1,42 @@
+
+POCKETS CERTIFICATES USING DOUBLE ENCRYPTION
+Almost all indian government issued documents are in physical form across the country. This means every time a 
+resident needs to share the document with an agency to avail any service, an attested photocopy either in physical 
+form or on scanned form is shared.
+Use of document hard copies creates huge overhead in terms of manual verification, paper storage, manual audits, etc.
+incurring high cost and inconvenience. This creates problem for various agencies to verify the authenticity of these 
+documents, thus, creating loopholes for usage of fake documents/certificates. These documents can be misused by anyone
+as strong identity is not attached with the document. This system is digital locker which provides digital empowerment
+for residents. It minimize the use of physical documents. System helps authenticity of the e-documents and eliminates 
+usage of fake documents. This system provides more security to documents. It reduces administrative overhead of Govt. 
+departments and agencies and make it easy for the residents to receive services. Documents can be accessed by multiple
+users at anytime and anywhere. 
+
+FEATURES
+The system comprises of 2 major modules with its sub-modules as follows:
+
+-Admin
+Login: Admin need to login with their valid login credentials.
+Add Citizen: Admin can add new citizen with basic details, Aadhaar ID and DOB.
+Manage Citizen: All the added citizen details are manageable by the admin itself.
+Add Documents: System allows admin to search citizen by Aadhaar and Enter document Type, Document. Apply Triple DES 
+and AES Encryption & and Send Email to Citizen.
+Manage Documents: Search Citizen with List of Uploaded Documents and Option to Upload.
+Feedback: Admin can view feedback messages received from the registered users.
+
+-User
+Login: The user has to login with credentials, Aadhaar ID and OTP.
+Documents: User can see all Encrypted file list of his/her document. A reverse operation of the file takes place on download and converted into actual format. Once user logs into system then he/she can Select Document Decrypt. User can view any of the document and also can download whenever required.
+Feedback: User can send a feedback message which will be notified to admin.
+
+Advantages
+Triple DES and AES Encryption is used on document to keep it secure.
+Easy access of files and cannot be lost.
+Only legitimate users can access their documents and download the file.
+System auto decrypts the files once user click on download.
+Disadvantages:
+System may provide incorrect results if data not entered correctly. 
+Applications:
+This system can be used for storing Important Documents in encrypted format.
+
+
