@@ -1,4 +1,6 @@
-﻿namespace EPC.Core
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EPC.Core
 {
     /// <summary>
     /// Represents the base class for entities
@@ -8,6 +10,7 @@
         /// <summary>
         /// Gets or sets the entity identifier
         /// </summary>
+
         public int Id { get; set; }
     }
 }

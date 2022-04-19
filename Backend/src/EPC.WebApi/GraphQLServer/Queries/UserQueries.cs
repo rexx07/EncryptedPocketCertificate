@@ -1,14 +1,14 @@
 ﻿using EPC.Core.Domain.Users;
-using EPC.Data;
+using EPC.Services;
 
 namespace EPC.WebApi.GraphQLServer.Queries
 {
     [ExtendObjectType("Query")]
     public class UserQueries
     {
-        public IQueryable<User> GetUser([ScopedService] AppDbContext context)
+        public async Task<IEnumerable<User>> GetUsers(ServiceManager serviceManager)
         {
-            return context.Users;
+            return await serviceManager.User.GetAllUsersAsync();
         }
     }
 }

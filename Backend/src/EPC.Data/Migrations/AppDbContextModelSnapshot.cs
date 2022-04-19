@@ -24,11 +24,9 @@ namespace EPC.Data.Migrations
 
             modelBuilder.Entity("EPC.Core.Domain.Documents.Document", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("DocumentGuid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Authority")
                         .IsRequired()
@@ -51,6 +49,9 @@ namespace EPC.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("IsValid")
                         .HasColumnType("boolean");
 
@@ -62,18 +63,21 @@ namespace EPC.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<Guid>("UserGuid")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("DocumentGuid");
+
+                    b.HasIndex("UserGuid");
 
                     b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("EPC.Core.Domain.Users.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("UserGuid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
@@ -103,6 +107,9 @@ namespace EPC.Data.Migrations
                     b.Property<int>("FailedLoginAttempts")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("boolean");
 
@@ -116,16 +123,29 @@ namespace EPC.Data.Migrations
                     b.Property<int?>("ShippingAddressId")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("UserGuid")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserGuid");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EPC.Core.Domain.Documents.Document", b =>
+                {
+                    b.HasOne("EPC.Core.Domain.Users.User", "User")
+                        .WithMany("Documents")
+                        .HasForeignKey("UserGuid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("EPC.Core.Domain.Users.User", b =>
+                {
+                    b.Navigation("Documents");
                 });
 #pragma warning restore 612, 618
         }

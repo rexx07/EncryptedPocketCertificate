@@ -1,4 +1,7 @@
-﻿namespace EPC.Core.Domain.Users
+﻿using EPC.Core.Domain.Documents;
+using System.ComponentModel.DataAnnotations;
+
+namespace EPC.Core.Domain.Users
 {
     public class User : BaseEntity
     {
@@ -10,6 +13,7 @@
         /// <summary>
         /// Gets or sets the customer GUID
         /// </summary>
+        [Key]
         public Guid UserGuid { get; set; }
 
         /// <summary>
@@ -76,5 +80,7 @@
         /// Gets or sets the shipping address identifier
         /// </summary>
         public int? ShippingAddressId { get; set; }
+
+        public ICollection<Document>? Documents { get; set; }
     }
 }

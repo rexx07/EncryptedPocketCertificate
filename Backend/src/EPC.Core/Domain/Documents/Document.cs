@@ -1,7 +1,22 @@
-﻿namespace EPC.Core.Domain.Documents
+﻿using EPC.Core.Domain.Users;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EPC.Core.Domain.Documents
 {
     public class Document : BaseEntity
     {
+        public Document()
+        {
+            DocumentGuid = Guid.NewGuid();
+        }
+
+        /// <summary>
+        /// Gets or sets the Document GUID
+        /// </summary>
+        [Key]
+        public Guid DocumentGuid { get; set; }
+
         /// <summary>
         /// Set Document name.
         /// </summary>
@@ -46,5 +61,9 @@
         /// Set autorenew
         /// </summary>
         public bool AutoRenew { get; set; }
+
+        [ForeignKey(nameof(User))]
+        public Guid UserGuid { get; set; }
+        public User User { get; set; }
     }
 }

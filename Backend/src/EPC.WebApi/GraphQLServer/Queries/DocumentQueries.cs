@@ -1,15 +1,14 @@
 ﻿using EPC.Core.Domain.Documents;
-using EPC.Data;
+using EPC.Services;
 
 namespace EPC.WebApi.GraphQLServer.Queries
 {
     [ExtendObjectType("Query")]
     public class DocumentQueries
     {
-        [UseDbContext(typeof(AppDbContext))]
-        public IQueryable<Document> GetDocuments([ScopedService] AppDbContext context)
+        public async Task<IEnumerable<Document>> GetDocuments(ServiceManager serviceManager)
         {
-            return context.Documents;
+            return await serviceManager.Document.GetAllDocumentsAsync();
         }
     }
 }

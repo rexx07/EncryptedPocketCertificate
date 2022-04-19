@@ -8,10 +8,11 @@ namespace EPC.Data
 {
     public static class SeedData
     {
-        public static async Task EnsurePopulated(IApplicationBuilder app)
+        public static void EnsurePopulated(IApplicationBuilder app)
         {
             AppDbContext context = app.ApplicationServices.CreateScope().ServiceProvider
-                .GetRequiredService<AppDbContext>();
+                 .GetRequiredService<AppDbContext>();
+
 
             if (context.Database.GetPendingMigrations().Any())
             {
@@ -20,9 +21,10 @@ namespace EPC.Data
 
             if (!context.Documents.Any())
             {
-                await context.Documents.AddRangeAsync(
+                context.Documents.AddRange(
                     new Document
                     {
+                        DocumentGuid = Guid.NewGuid(),
                         Title = "Certificate",
                         FileName = "Certificate Of Ownership",
                         Authority = "State Government",
@@ -32,10 +34,30 @@ namespace EPC.Data
                         DateAdded = DateTime.UtcNow,
                         IsValid = true,
                         ExpiryDate = DateTime.UtcNow,
-                        AutoRenew = true
+                        AutoRenew = true,
+                        UserGuid = Guid.NewGuid(),
+                        User = new User
+                        {
+                            UserGuid = Guid.NewGuid(),
+                            Username = "userone",
+                            Email = "user1@epc.com",
+                            EmailToRevalidate = "user1@epc",
+                            AdminComment = "First User",
+                            RequireReLogin = true,
+                            FailedLoginAttempts = 4,
+                            Active = true,
+                            Deleted = false,
+                            IsAdmin = true,
+                            AdminRole = "Secretary",
+                            LastIpAddress = "123456789",
+                            ShippingAddressId = 1,
+                            BillingAddressId = 2,
+                            Documents = null //  (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
+                        }
                     },
                     new Document
                     {
+                        DocumentGuid = Guid.NewGuid(),
                         Title = "Contract",
                         FileName = "Contract Of Facility Construction",
                         Authority = "Local Government",
@@ -46,10 +68,30 @@ namespace EPC.Data
                         DateAdded = DateTime.UtcNow,
                         IsValid = true,
                         ExpiryDate = DateTime.UtcNow,
-                        AutoRenew = true
+                        AutoRenew = true,
+                        UserGuid = Guid.NewGuid(),
+                        User = new User
+                        {
+                            UserGuid = Guid.NewGuid(),
+                            Username = "usertwo",
+                            Email = "user2@epc.com",
+                            EmailToRevalidate = "user2@epc",
+                            AdminComment = "Second User",
+                            RequireReLogin = true,
+                            FailedLoginAttempts = 4,
+                            Active = true,
+                            Deleted = false,
+                            IsAdmin = true,
+                            AdminRole = "Officer",
+                            LastIpAddress = "123456789",
+                            ShippingAddressId = 1,
+                            BillingAddressId = 2,
+                            Documents = null //  (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
+                        }
                     },
                     new Document
                     {
+                        DocumentGuid = Guid.NewGuid(),
                         Title = "Warrent",
                         FileName = "Warrant to Search Facility",
                         Authority = "Federal Government",
@@ -58,10 +100,30 @@ namespace EPC.Data
                         DateAdded = DateTime.UtcNow,
                         IsValid = true,
                         ExpiryDate = DateTime.UtcNow,
-                        AutoRenew = true
+                        AutoRenew = true,
+                        UserGuid = Guid.NewGuid(),
+                        User = new User
+                        {
+                            UserGuid = Guid.NewGuid(),
+                            Username = "userthree",
+                            Email = "user3@epc.com",
+                            EmailToRevalidate = "user3@epc",
+                            AdminComment = "Third User",
+                            RequireReLogin = true,
+                            FailedLoginAttempts = 4,
+                            Active = true,
+                            Deleted = false,
+                            IsAdmin = true,
+                            AdminRole = "Project Manager",
+                            LastIpAddress = "123456789",
+                            ShippingAddressId = 1,
+                            BillingAddressId = 2,
+                            Documents = null //  (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
+                        }
                     },
                     new Document
                     {
+                        DocumentGuid = Guid.NewGuid(),
                         Title = "Charter",
                         FileName = "Contract Of Logistics in Steel",
                         Authority = "Private Institution",
@@ -72,10 +134,30 @@ namespace EPC.Data
                         DateAdded = DateTime.UtcNow,
                         IsValid = true,
                         ExpiryDate = DateTime.UtcNow,
-                        AutoRenew = true
+                        AutoRenew = true,
+                        UserGuid = Guid.NewGuid(),
+                        User = new User
+                        {
+                            UserGuid = Guid.NewGuid(),
+                            Username = "userfour",
+                            Email = "user4@epc.com",
+                            EmailToRevalidate = "user4@epc",
+                            AdminComment = "Fourth User",
+                            RequireReLogin = true,
+                            FailedLoginAttempts = 4,
+                            Active = true,
+                            Deleted = false,
+                            IsAdmin = true,
+                            AdminRole = "Product Designer",
+                            LastIpAddress = "123456789",
+                            ShippingAddressId = 1,
+                            BillingAddressId = 2,
+                            Documents = null //  (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
+                        }
                     },
                     new Document
                     {
+                        DocumentGuid = Guid.NewGuid(),
                         Title = "Bond",
                         FileName = "Bond Transferring Equity After Liquidation",
                         Authority = "Private Institution",
@@ -86,14 +168,32 @@ namespace EPC.Data
                         DateAdded = DateTime.UtcNow,
                         IsValid = true,
                         ExpiryDate = DateTime.UtcNow,
-                        AutoRenew = true
+                        AutoRenew = true,
+                        UserGuid = Guid.NewGuid(),
+                        User = new User
+                        {
+                            UserGuid = Guid.NewGuid(),
+                            Username = "userfive",
+                            Email = "user5@epc.com",
+                            EmailToRevalidate = "user5@epc",
+                            AdminComment = "Fifth User",
+                            RequireReLogin = true,
+                            FailedLoginAttempts = 4,
+                            Active = true,
+                            Deleted = false,
+                            IsAdmin = true,
+                            AdminRole = "Logistician",
+                            LastIpAddress = "123456789",
+                            ShippingAddressId = 1,
+                            BillingAddressId = 2,
+                            Documents = null // (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
+                        }
                     }
                 );
-                await context.SaveChangesAsync();
 
                 if (!context.Users.Any())
                 {
-                    await context.Users.AddRangeAsync(
+                    context.Users.AddRange(
                         new User
                         {
                             UserGuid = Guid.NewGuid(),
@@ -110,6 +210,7 @@ namespace EPC.Data
                             LastIpAddress = "123456789",
                             ShippingAddressId = 1,
                             BillingAddressId = 2,
+                            Documents = null //  (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
                         },
                         new User
                         {
@@ -127,6 +228,7 @@ namespace EPC.Data
                             LastIpAddress = "123456789",
                             ShippingAddressId = 1,
                             BillingAddressId = 2,
+                            Documents = null //  (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
                         },
                         new User
                         {
@@ -144,6 +246,7 @@ namespace EPC.Data
                             LastIpAddress = "123456789",
                             ShippingAddressId = 1,
                             BillingAddressId = 2,
+                            Documents = null //  (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
                         },
                         new User
                         {
@@ -161,6 +264,7 @@ namespace EPC.Data
                             LastIpAddress = "123456789",
                             ShippingAddressId = 1,
                             BillingAddressId = 2,
+                            Documents = null //  (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
                         },
                         new User
                         {
@@ -178,9 +282,11 @@ namespace EPC.Data
                             LastIpAddress = "123456789",
                             ShippingAddressId = 1,
                             BillingAddressId = 2,
+                            Documents = null //  (ICollection<Document>)new List<string>() { "License", "Certificate", "Endorsement" }
                         }
                     );
-                    await context.SaveChangesAsync();
+
+                    context.SaveChanges();
                 }
             }
         }
